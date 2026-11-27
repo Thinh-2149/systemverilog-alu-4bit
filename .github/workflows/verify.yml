@@ -6,7 +6,7 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6.0.3
       - name: Install tools
         run: sudo apt-get update && sudo apt-get install -y iverilog yosys
       - name: Simulate all 2,048 vectors
@@ -16,6 +16,7 @@ jobs:
           iverilog -g2012 -s presets_tb -o checks/presets-test rtl/alu4.sv tb/presets_tb.sv
           (cd checks && vvp alu-test && vvp presets-test)
       - name: Check the combinational netlist
+        shell: bash
         run: |
           yosys -V
           yosys -s scripts/synth.ys | tee checks/synthesis.txt
@@ -24,7 +25,7 @@ jobs:
           mkdir -p dist
           node scripts/build-preview.cjs --public dist/index.html
       - name: Save simulation and synthesis results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6.0.0
         with:
           name: alu-verification
           path: |
@@ -33,7 +34,7 @@ jobs:
             checks/synthesis.txt
       - name: Prepare GitHub Pages artifact
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5.0.0
         with:
           path: dist
   deploy:
@@ -49,4 +50,4 @@ jobs:
     steps:
       - name: Publish demo
         id: pages
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5.0.1
