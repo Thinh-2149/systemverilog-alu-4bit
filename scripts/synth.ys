@@ -1,0 +1,4 @@
+read_verilog -sv rtl/alu4.sv
+synth -top alu4
+check -assert
+stat
