@@ -1,4 +1,4 @@
-# ALU Signal Lab
+# 4-Bit Arithmetic Logic Unit (ALU) in SystemVerilog
 
 An interactive 4-bit ALU built around a SystemVerilog design and an exhaustive, self-checking testbench. The demo shows the selected arithmetic, logic, or shift path and explains how the status flags respond.
 
