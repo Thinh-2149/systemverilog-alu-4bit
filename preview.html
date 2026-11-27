@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore the signal path and status flags of a 4-bit ALU.">
+  <title>ALU Signal Lab</title>
+  <style>/* PREVIEW_STYLE */</style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell mast">
+      <div class="identity"><span class="monogram" aria-hidden="true">T</span><span>ALU Signal Lab</span></div>
+      <span class="preview-state">4-bit ALU</span>
+    </div>
+  </header>
+
+  <main id="lab" class="shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Digital IC design <span class="dot-divider">/</span> SystemVerilog</p>
+        <h1>ALU <em>Signal Lab.</em></h1>
+        <p class="lede">Flip an input bit and follow the path it takes through a 4-bit arithmetic logic unit.</p>
+      </div>
+      <div class="spec" aria-label="ALU specifications">
+        <span><b>4-bit</b> data path</span><span><b>8</b> operations</span>
+      </div>
+    </header>
+
+    <div class="bench">
+      <section class="panel controls" aria-labelledby="controls-title">
+        <div class="section-title"><h2 id="controls-title">Inputs</h2><span class="mono dim">A · B</span></div>
+        <div class="word">
+          <div class="row-label"><h3>A</h3><span id="a-decimal"></span></div>
+          <div id="input-a" class="bit-row" role="group" aria-label="Input A"></div>
+        </div>
+        <div class="word" id="b-word">
+          <div class="row-label"><h3>B</h3><span id="b-decimal"></span></div>
+          <div id="input-b" class="bit-row" role="group" aria-label="Input B"></div>
+        </div>
+        <div class="op-block">
+          <h3>Operation</h3>
+          <div id="op-picker" class="ops" role="group" aria-label="ALU operation"></div>
+          <p class="opcode mono" id="opcode"></p>
+          <p class="dim tiny" id="operand-note" hidden>Uses A only. B is held for the next two-input operation.</p>
+        </div>
+      </section>
+
+      <section class="panel schematic" aria-labelledby="diagram-title">
+        <div class="section-title schematic-title">
+          <h2 id="diagram-title">Signal path</h2>
+          <button id="trace-toggle" class="quiet" type="button" aria-pressed="true">Bit trace</button>
+        </div>
+        <div class="diagram-surface">
+          <canvas id="circuit" width="630" height="292" aria-label="Diagram of inputs, active ALU path, and output" role="img"></canvas>
+        </div>
+        <div id="trace-view" class="trace-view">
+          <div class="row-label">
+            <h3 id="trace-title">Ripple carry</h3>
+            <span id="trace-legend" class="mono"></span>
+          </div>
+          <div id="trace-cells" class="trace-cells" role="group" aria-labelledby="trace-title"></div>
+          <p id="trace-detail" class="trace-detail"></p>
+        </div>
+      </section>
+
+      <section class="panel output" aria-labelledby="output-title">
+        <div class="section-title"><h2 id="output-title">Result</h2><span class="mono dim">Y[3:0]</span></div>
+        <div id="output-bits" class="bit-row" aria-label="Result bits"></div>
+        <dl class="base-values">
+          <div><dt>Unsigned</dt><dd id="unsigned-result"></dd></div>
+          <div><dt>Signed</dt><dd id="signed-result"></dd></div>
+        </dl>
+        <h3>Status flags</h3>
+        <div id="flags" class="flags" role="group" aria-label="Result status flags"></div>
+        <div class="explain" aria-live="polite">
+          <strong id="flag-heading"></strong><p id="flag-detail"></p>
+        </div>
+      </section>
+    </div>
+
+    <section class="scenarios" aria-labelledby="scenarios-title">
+      <h2 id="scenarios-title">Try a case</h2>
+      <div id="presets" class="presets"></div>
+    </section>
+
+    <section class="panel waveform" aria-labelledby="wave-title">
+      <div class="section-title wave-head">
+        <div><h2 id="wave-title">Testbench waveform</h2><p class="dim" id="wave-provenance"></p></div>
+        <span class="mono readout" id="wave-readout"></span>
+      </div>
+      <canvas id="wave" width="1060" height="258" role="img" aria-label="Waveform with output buses and status flags for five testbench cases"></canvas>
+      <div id="wave-select" class="wave-select" role="group" aria-label="Waveform cases"></div>
+    </section>
+
+    <footer class="lab-footer"><span class="mono" id="verification-label"></span><a href="https://github.com/Thinh-2149/systemverilog-alu-4bit">Source on GitHub</a></footer>
+  </main>
+
+  <script id="preview-data" type="application/json">/* PREVIEW_DATA */</script>
+  <script>/* PREVIEW_SCRIPT */</script>
+</body>
+</html>
